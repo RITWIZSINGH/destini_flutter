@@ -1,8 +1,6 @@
-
 // ignore_for_file: prefer_final_fields
 
 import 'story.dart';
-
 
 class StoryBrain {
   int storyNumber = 0;
@@ -33,14 +31,89 @@ class StoryBrain {
         '')
   ];
 
-  String getStory(){
+  String getStory() {
     return _storyData[storyNumber].storyTitle;
   }
-  String getchoice1(){
+
+  String getchoice1() {
     return _storyData[storyNumber].choice1;
   }
-  String getChoice2(){
+
+  String getChoice2() {
     return _storyData[storyNumber].choice2;
+  }
+
+  void nextStory(int choiceNumber) {
+    // if (storyNumber == 3 || storyNumber == 4 || storyNumber == 5) {
+    //   reset();
+    // } else if (storyNumber == 0 && choiceNumber == 2) {
+    //   storyNumber = 1;
+    // } else if (storyNumber == 0 && choiceNumber == 1) {
+    //   storyNumber = 2;
+    // }
+    // else if(storyNumber==2 && choiceNumber==1){
+    //   storyNumber=5;
+    // }
+    // else if (storyNumber==2 && choiceNumber==2){
+    //   storyNumber=4;
+    // }
+    // else if (storyNumber==1 && choiceNumber==1){
+    //   storyNumber=2;
+    // }
+    // else if (storyNumber==1 && choiceNumber==2){
+    //   storyNumber=3;
+    // }
+    switch (storyNumber) {
+      case 0:
+        switch (choiceNumber) {
+          case 1:
+            storyNumber = 2;
+            break;
+          case 2:
+            storyNumber = 1;
+            break;
+        }
+        break;
+      case 1:
+        switch (choiceNumber) {
+          case 1:
+            storyNumber = 2;
+            break;
+          case 2:
+            storyNumber = 3;
+            break;
+        }
+        break;
+      case 2:
+        switch (choiceNumber) {
+          case 1:
+            storyNumber = 5;
+            break;
+          case 2:
+            storyNumber = 4;
+            break;
+        }
+        break;
+      case 3:
+      case 4:
+      case 5:
+        reset();
+        break;
+      default:
+        break;
+    }
+  }
+
+  void reset() {
+    storyNumber = 0;
+  }
+  bool buttonShouldBeVisible(){
+    if (storyNumber == 0 || storyNumber ==  1 || storyNumber == 2){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }
 
@@ -58,7 +131,7 @@ class StoryBrain {
 //TODO: Step 25 - Change the storyNumber property into a private property so that only story_brain.dart has access to it. You can do this by right clicking on the name (storyNumber) and selecting Refactor -> Rename to make the change across all the places where it's used.
 
 //TODO: Step 16 - Create a property called storyNumber which starts with a value of 0. This will be used to track which story the user is currently viewing.
-
+//16th TODO done
 //TODO: Step 17 - Create a method called nextStory(), it should not have any outputs but it should have 1 input called choiceNumber which will be the choice number (int) made by the user.
 
 //TODO: Step 20 - Download the story plan here: https://drive.google.com/uc?export=download&id=1KU6EghkO9Hf2hRM0756xFHgNaZyGCou3
